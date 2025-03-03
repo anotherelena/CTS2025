@@ -1,0 +1,34 @@
+//Agentie de turism AgeTur: aplicatia sa gestioneze vanzarea de pachete turistice
+//Astfel incat sa nu se vanda de doua ori acelasi pachet.
+//Clasa travelPackage - pachet turistic cu id, nume, flag - vandut sau nu
+//clasa agetur - singleton - gestiunea pachetelor, metode pt add si sell
+//in sell verifica daca pachetul e deja vandut
+//clasa main demo functionalitate
+
+public class PachetTuristic{
+    private int id;
+    private String nume;
+    private boolean vandut;
+
+    public PachetTuristic (int id, String nume){
+        this.id = id;
+        this.nume = nume;
+        this.vandut = false;
+    }
+
+    public int getId(){
+        return id;
+    }
+    
+    public String getNume(){
+        return nume;
+    }
+    
+    public boolean eVandut(){
+        return vandut;
+    }
+
+    public void marcheazaVandut(){
+        this.vandut = true;
+    }
+}
