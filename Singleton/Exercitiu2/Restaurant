@@ -1,0 +1,36 @@
+/*Singleton lenes cu clasa restaurant
+ * constructor privat care initializeaza lista de comenzi
+ * metoda publica statica getInstanta care returneaza instanta unica
+ * metode pt adaugare de comenzi si afisare comenzi
+ */
+import java.util.ArrayList;
+import java.util.List;
+
+public class Restaurant {
+    private static Restaurant instanta;
+    private List<String> comenzi;
+//constructor privat!!!
+    private Restaurant(){
+        comenzi = new ArrayList<>();
+        System.out.println("Restaurantul s-a deschis.");
+    }
+//lazy init 
+    public static Restaurant getInstanta(){
+        if(instanta == null){
+            instanta = new Restaurant();
+        }
+        return instanta;
+    }
+//metoda add comanda
+    public void adaugaComanda(String comanda){
+        comenzi.add(comanda);
+        System.out.println("Comanda a fost adaugata: "+ comanda);
+    }
+
+    public void afiseazaComenzi(){
+        System.out.println("Comenzile curente: ");
+        for(String comanda : comenzi){
+            System.out.println(comanda);
+        }
+    }
+}
