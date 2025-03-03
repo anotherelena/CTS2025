@@ -1,0 +1,11 @@
+public class Main{
+    public static void main(String[] args){
+        Restaurant restaurant = Restaurant.getInstanta();
+
+        restaurant.adaugaComanda("Pizza vegetariana");
+        restaurant.adaugaComanda("Calzone cu pui");
+        restaurant.adaugaComanda("Salata nicoise");
+
+        restaurant.afiseazaComenzi();
+    }
+}
