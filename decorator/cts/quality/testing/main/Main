@@ -1,0 +1,90 @@
+        /*Decorator:
+         * de ce se foloseste: pt ca trebuie sa adaugam functionalitate de discount fara sa modificam clasa magazin
+         * Metoda decorator inveleste practic un obiect si ii extinde comportamentul
+         */
+
+
+
+package cts.quality.testing.main;
+
+import cts.quality.testing.magazin.Magazin;
+import cts.quality.testing.magazin.Comanda;
+import cts.quality.testing.magazin.Client;
+import cts.quality.testing.discount.DiscountMagazinDecorator;
+import cts.quality.testing.composite.Categorie;
+import cts.quality.testing.composite.Produs;
+import cts.quality.testing.composite.IProdus;
+
+
+public class Main {
+    public static void main(String[] args) {
+
+        System.out.println("=== Test Modul Discount ===");
+        Magazin magazin = new Magazin();
+        Magazin discountMagazin = new DiscountMagazinDecorator(magazin);
+
+
+        Client client1 = new Client("Maricica");
+        Client client2 = new Client("Gigel");
+
+
+        Comanda[] comenziClient1 = new Comanda[] {
+            new Comanda(client1, 123.3),
+            new Comanda(client1, 234.2),
+            new Comanda(client1, 157.1)
+        };
+        Comanda[] comenziClient2 = new Comanda[] {
+            new Comanda(client2, 82.9),
+            new Comanda(client2, 122.9),
+            new Comanda(client2, 69.9)
+        };
+
+
+        for (int i = 0; i < comenziClient1.length; i++) {
+            double total = discountMagazin.calculeazaTotal(comenziClient1[i]);
+            System.out.println("Comanda " + (i + 1) + " pentru " + client1.getNume() +
+                " - Total: " + total +
+                (comenziClient1[i].isDiscountAplicat() ? " (Discount aplicat)" : ""));
+        }
+
+        for (int i = 0; i < comenziClient2.length; i++) {
+            double total = discountMagazin.calculeazaTotal(comenziClient2[i]);
+            System.out.println("Comanda " + (i + 1) + " pentru " + client2.getNume() +
+                " - Total: " + total +
+                (comenziClient2[i].isDiscountAplicat() ? " (Discount aplicat)" : ""));
+        }
+
+        System.out.println("\n=== Test Modul Vizualizare Produse (Composite Pattern) ===");
+
+        Categorie magazinProduse = new Categorie("Magazin Produse Online");
+
+        Categorie electronice = new Categorie("Electronice");
+        Categorie carti = new Categorie("Carti");
+
+        Categorie telefoane = new Categorie("Telefoane");
+        Produs laptop = new Produs("Laptop", 10);
+        Produs camera = new Produs("Camera", 5);
+
+        Produs carte1 = new Produs("Cartea Java", 20);
+        Produs carte2 = new Produs("Cartea Design Patterns", 15);
+
+        electronice.adaugaProdus(telefoane);  
+        electronice.adaugaProdus(laptop);      
+        electronice.adaugaProdus(camera);      
+        carti.adaugaProdus(carte1);
+        carti.adaugaProdus(carte2);
+        
+        Categorie smartphone = new Categorie("Smartphone");
+        Produs iphone = new Produs("iPhone", 8);
+        Produs samsung = new Produs("Samsung Galaxy", 12);
+        smartphone.adaugaProdus(iphone);
+        smartphone.adaugaProdus(samsung);
+        telefoane.adaugaProdus(smartphone);
+
+        magazinProduse.adaugaProdus(electronice);
+        magazinProduse.adaugaProdus(carti);
+
+        magazinProduse.afiseazaInformatii();
+
+    }
+}
