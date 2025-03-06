@@ -1,0 +1,28 @@
+/*  TESTING UNITS - Possibly. lets rewrite the whole thing.
+
+import static org.junit.Assert.*;
+
+import java.beans.Transient;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class ComputerBuilderTest {
+    private ComputerBuilder builder;
+    private Director director;
+
+    @Before
+    public void setUp(){
+        builder = new ConcreteComputerBuilder();
+        director = new Director(builder);
+    }
+
+    @Test
+    public void testBlankComputer() {
+        director.constructBlankComputer();
+        Computer computer = builder.getComputer();
+        assertEquals("", )
+    }
+}
+
+*/
