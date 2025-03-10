@@ -1,16 +1,18 @@
-//fabricatorul concret de cazare: el extinde fabricapacheteturistice si suprascrie metoda crearePachet
-//ii dam cazuri in functie de pachet: hotel sau cabana si se creeaza un obiect din astea sau null sau exceptie daca nu recunoaste tipul de pachet introdus
-//EXTENDS Adica Mosteneste! in java e mereu single inheritance!! o clasa extinde o singura clasa-bleah
-public class FabricaCazare extends FabricaPacheteTuristice {
+//Asta e gen o implementare varza. un miliard de if else-uri. hai sa schimbam
+
+public class FabricaCombinata extends FabricaPacheteTuristice {
     @Override
-    public PachetTuristic crearePachet(String tipPachet){
-        if(tipPachet.equalsIgnoreCase("hotel")){
-            return new CazareHotel();
-        }else if (tipPachet.equalsIgnoreCase("cabana")){
-            return new CazareCabana();
-        }else{
-            System.out.println("Nu stim tipul asta de cazare: " + tipPachet);
+    public PachetTuristic crearePachet(String tipPachet) {
+        if(tipPachet.equalsIgnoreCase("hotel-autobuz")) {
+            return new PachetCazareTransport("Hotel de 3 stele", "Autobuz");
+        } else if (tipPachet.equalsIgnoreCase("cabana-microbuz")) {
+            return new PachetCazareTransport("Cabana montana", " microbuz");
+        } else if(tipPachet.equalsIgnoreCase("hotel-microbuz")){
+            return new PachetCazareTransport("Hotel de doua stele", "microbuz");
+        }else {
+            System.out.println("nu stim ce zici tu acolo: " + tipPachet);
             return null;
         }
     }
+    
 }
